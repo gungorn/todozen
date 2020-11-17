@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "752663503302",
+    "firebase_url": "https://todozen-f6425.firebaseio.com",
+    "project_id": "todozen-f6425",
+    "storage_bucket": "todozen-f6425.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752663503302:android:f0591f3f48d69906d392c7",
+        "android_client_info": {
+          "package_name": "com.todozen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752663503302-h65jkl60irmhbj6u5hf4pi11r7or572i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP_zPTT-o_0ggKe9NrThkZsjEpiBNpSCw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752663503302-h65jkl60irmhbj6u5hf4pi11r7or572i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
