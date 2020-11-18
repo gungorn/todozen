@@ -17,6 +17,7 @@ const RENDER = props => {
 			<Caption text={'TODO'} opacity={1} />
 
 			<FlatList
+				nestedScrollEnabled
 				data={data}
 				extraData={data}
 				renderItem={d => <ToDo todoText={d.item.todo} id={d.item.id} completed={false} />}
@@ -30,7 +31,7 @@ const RENDER = props => {
 const styles = StyleSheet.create({
 	container: {
 		marginHorizontal: W(3),
-		maxHeight: H(50)
+		maxHeight: H(70)
 	},
 });
 

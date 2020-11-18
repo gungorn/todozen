@@ -29,8 +29,7 @@ const RENDER = P => {
 
 const styles = StyleSheet.create({
 	container: {
-		marginHorizontal: W(3),
-		flex: 1
+		marginHorizontal: W(3)
 	},
 });
 

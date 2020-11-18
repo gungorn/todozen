@@ -47,6 +47,14 @@ class FB {
 
 		return OK;
 	}
+	deleteTodo = async todoid => {
+		let OK = true;
+
+		try { await rdb().ref(`/TODOs/${this.token}/${todoid}/deleted`).set(true); }
+		catch (e) { OK = false; console.log(e); }
+
+		return OK;
+	}
 
 
 	onTODO = F => {

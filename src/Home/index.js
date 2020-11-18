@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { View, Text } from 'native-base';
 
 import AddItem from './AddItem';
@@ -20,8 +20,10 @@ const RENDER = () => {
 		<View style={styles.container}>
 			<AddItem />
 
-			<ToDos data={todoData.incompleted} />
-			<Completed data={todoData.completed} />
+			<ScrollView style={{ flex: 1 }} nestedScrollEnabled>
+				<ToDos data={todoData.incompleted} />
+				<Completed data={todoData.completed} />
+			</ScrollView>
 		</View>
 	);
 };
@@ -29,7 +31,7 @@ const RENDER = () => {
 const styles = StyleSheet.create({
 	container: {
 		width: w,
-		height: h
+		height: '100%'
 	}
 });
 

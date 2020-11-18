@@ -41,7 +41,7 @@ const RENDER = P => {
 				:
 				<>
 					<Text style={[styles.todoText, completed && { ...FONT.S, textDecorationLine: 'line-through', color: Colors.gray }]}>{todoText_}</Text>
-					<Button hasText transparent onPress={() => alert('test')}>
+					<Button hasText transparent onPress={() => FB.deleteTodo(id)}>
 						<Text uppercase={false} style={styles.delButtonText}>Del</Text>
 					</Button>
 				</>

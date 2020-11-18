@@ -7,7 +7,7 @@ import Home from '../Home';
 
 import Background from '../Components/Background';
 import { splashback } from '../Assets';
-import { h, w } from '../Dimensions';
+import { w } from '../Dimensions';
 
 
 const RENDER = () => {
@@ -32,7 +32,7 @@ const RENDER = () => {
 const styles = StyleSheet.create({
 	container: {
 		width: w,
-		height: h
+		height: '100%'
 	}
 });
 
