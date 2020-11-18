@@ -1,16 +1,24 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Text } from 'native-base';
+import { Text, View } from 'native-base';
+import PropTypes from 'prop-types';
 
 import { H } from '../Dimensions';
-import Colors from '../Colors.json';
 
 import FONT from '../config/FontConfig';
+import Colors from '../Colors.json';
+
+import BottomBorder from './BottomBorder';
 
 const RENDER = P => {
-	const { text } = P;
+	const { text, color } = P;
 
-	return <Text style={styles.caption}>{text}</Text>;
+	return (
+		<View>
+			<Text style={[styles.caption, { color }]}>{text}</Text>
+			<BottomBorder />
+		</View>
+	);
 };
 
 const styles = StyleSheet.create({
@@ -18,9 +26,10 @@ const styles = StyleSheet.create({
 		...FONT.L_BOLD,
 		paddingTop: H(2),
 		paddingBottom: H(1),
-		borderBottomWidth: 2,
-		borderColor: Colors.black
-	},
+	}
 });
+
+RENDER.propTypes = { color: PropTypes.string };
+RENDER.defaultProps = { color: Colors.black };
 
 export default RENDER;
