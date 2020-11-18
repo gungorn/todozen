@@ -1,17 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { Textarea, Button, View, Text } from 'native-base';
+import { PulseIndicator } from 'react-native-indicators';
 
 import Colors from '../Colors.json';
 import { W, H, sbh } from '../Dimensions';
 import FONT from '../config/FontConfig';
 
 import Caption from '../Components/Caption';
+import FB from '../FB';
+
 
 const RENDER = () => {
 	const [value, setValue] = useState('');
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => { return () => null; }, []);
+
+
+	const setTODO = async () => {
+		setLoading(true);
+
+		if (await FB.setTODO(value)) {
+			setValue('');
+			setLoading(false);
+		}
+		else {
+			setLoading(false);
+			console.log('ERROR');
+		}
+	};
+
 
 	return (
 		<View style={styles.container}>
@@ -24,10 +43,11 @@ const RENDER = () => {
 					style={styles.input}
 					value={value}
 					onChangeText={d => setValue(d)}
+					disabled={loading}
 				/>
 
-				<Button hasText transparent onPress={() => alert('test')}>
-					<Text uppercase={false} style={styles.addButtonText}>Add</Text>
+				<Button hasText transparent onPress={setTODO}>
+					{loading ? <View><PulseIndicator color={Colors.C5} /></View> : <Text uppercase={false} style={styles.addButtonText}>Add</Text>}
 				</Button>
 			</View>
 		</View>
