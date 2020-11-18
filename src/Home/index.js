@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { View } from 'native-base';
 
 import AddItem from './AddItem';
 import ToDos from './ToDos';

@@ -64,8 +64,7 @@ const RENDER = P => {
 				}
 
 				{
-					edit
-						?
+					(edit && !completed) ?
 						<>
 							<Textarea style={styles.input} value={todoTextEdit} onChangeText={d => setTodoTextEdit(d)} />
 
@@ -75,15 +74,14 @@ const RENDER = P => {
 									<Text uppercase={false} style={styles.saveButtonText}>Save</Text>
 								</Button>
 							}
-						</>
-						:
+						</> :
 						<>
-							<Text style={[styles.todoText, completed && { textDecorationLine: 'line-through', color: Colors.gray }]}>{todoText}</Text>
+							<Text style={[styles.todoText, completed && { ...FONT.S, textDecorationLine: 'line-through', color: Colors.gray }]}>{todoText}</Text>
 
 							{
 								completed &&
 								<Button hasText transparent onPress={() => alert('test')}>
-									<Text uppercase={false} style={styles.saveButtonText}>Del</Text>
+									<Text uppercase={false} style={styles.delButtonText}>Del</Text>
 								</Button>
 							}
 						</>
@@ -97,7 +95,8 @@ const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
 		marginTop: H(2),
-		marginBottom: H(2)
+		marginBottom: H(2),
+		alignItems: 'center'
 	},
 
 	checkBoxK: {
@@ -108,7 +107,7 @@ const styles = StyleSheet.create({
 
 	todoText: {
 		flex: 1,
-		textAlignVertical: 'center'
+		textAlignVertical: 'center',
 	},
 
 	buttonsContainer: {
@@ -135,6 +134,14 @@ const styles = StyleSheet.create({
 
 	saveButtonText: {
 		...FONT.M,
+		color: Colors.gray,
+		width: W(20),
+		height: '100%',
+		textAlignVertical: 'center',
+		textAlign: 'center'
+	},
+	delButtonText: {
+		...FONT.S,
 		color: Colors.gray,
 		width: W(20),
 		height: '100%',
