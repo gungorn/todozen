@@ -14,12 +14,12 @@ const RENDER = props => {
 
 	return (
 		<View style={styles.container}>
-			<Caption text={'TODO'} />
+			<Caption text={'TODO'} opacity={1} />
 
 			<FlatList
 				data={data}
 				extraData={data}
-				renderItem={d => <ToDo todoText={d.item.todo} id={d.item.id} />}
+				renderItem={d => <ToDo todoText={d.item.todo} id={d.item.id} completed={false} />}
 				showsVerticalScrollIndicator={false}
 				showsHorizontalScrollIndicator={false}
 			/>

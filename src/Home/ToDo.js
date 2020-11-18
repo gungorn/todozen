@@ -1,46 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { Textarea, Button, View } from 'native-base';
 import CheckBox from '@react-native-community/checkbox';
+//import CheckBox from '@react-native-community/checkbox';
 
 import Colors from '../Colors.json';
 import { W, H } from '../Dimensions';
 import FONT from '../config/FontConfig';
+import FB from '../FB';
 
 const RENDER = P => {
-	const { todoText, completed } = P;
+	const { todoText, completed, id } = P;
 
 	const [edit, setEdit] = useState(false);
 	const [todoTextEdit, setTodoTextEdit] = useState(todoText);
+	const [todoText_, setTodoText_] = useState(todoText);
 	const [checked, setChecked] = useState(completed);
 
-	useEffect(() => { return () => null; }, []);
+
+	const editOnPress = () => {
+		setEdit(false);
+		FB.editTODO(id, todoTextEdit);
+	};
 
 	return (
 		<TouchableOpacity style={styles.container} onLongPress={() => setEdit(true)} activeOpacity={0.8}>
 			{!edit &&
 				<View style={styles.checkBoxK}>
-					<CheckBox value={checked} onChange={() => null} style={styles.checkBox} />
+					<CheckBox value={completed} onValueChange={d => FB.completeTodo(id, d)} style={styles.checkBox} />
 				</View>
 			}
-
 			{(edit && !completed) ?
 				<>
-					<Textarea style={styles.input} value={todoTextEdit} onChangeText={d => setTodoTextEdit(d)} />
-					<Button hasText transparent onPress={() => alert('test')}>
+					<Textarea style={styles.input} value={todoTextEdit} onChangeText={d => { setTodoTextEdit(d); setTodoText_(d); }} />
+
+					<Button hasText transparent onPress={editOnPress}>
 						<Text uppercase={false} style={styles.saveButtonText}>Save</Text>
 					</Button>
 				</>
 				:
 				<>
-					<Text style={[styles.todoText, completed && { ...FONT.S, textDecorationLine: 'line-through', color: Colors.gray }]}>{todoText}</Text>
-
-					{
-						completed &&
-						<Button hasText transparent onPress={() => alert('test')}>
-							<Text uppercase={false} style={styles.delButtonText}>Del</Text>
-						</Button>
-					}
+					<Text style={[styles.todoText, completed && { ...FONT.S, textDecorationLine: 'line-through', color: Colors.gray }]}>{todoText_}</Text>
+					<Button hasText transparent onPress={() => alert('test')}>
+						<Text uppercase={false} style={styles.delButtonText}>Del</Text>
+					</Button>
 				</>
 			}
 		</TouchableOpacity>

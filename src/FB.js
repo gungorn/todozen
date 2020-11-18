@@ -16,6 +16,16 @@ class FB {
 	DB = null;
 	token = null; //userid
 
+
+	editTODO = async (todoid, newTodo) => {
+		let OK = true;
+
+		try { await rdb().ref(`/TODOs/${this.token}/${todoid}/todo`).set(newTodo); }
+		catch (e) { OK = false; console.log(e); }
+
+		return OK;
+	}
+
 	setTODO = async todo => {
 		const todoid = `${shortid()}${shortid()}`;
 
@@ -24,6 +34,15 @@ class FB {
 		const todoDATA = { todo, date: new Date().getTime(), deleted: false, completed: false };
 
 		try { await rdb().ref(`/TODOs/${this.token}/${todoid}`).set(todoDATA); }
+		catch (e) { OK = false; console.log(e); }
+
+		return OK;
+	}
+
+	completeTodo = async (todoid, status) => {
+		let OK = true;
+
+		try { await rdb().ref(`/TODOs/${this.token}/${todoid}/completed`).set(status); }
 		catch (e) { OK = false; console.log(e); }
 
 		return OK;
