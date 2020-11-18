@@ -1,4 +1,6 @@
 import { AppRegistry, UIManager, Platform, LogBox } from 'react-native';
+import 'react-native-console-time-polyfill';
+
 import App from './src/App';
 import FB from './src/FB';
 
