@@ -11,10 +11,10 @@ import Colors from '../Colors.json';
 import BottomBorder from './BottomBorder';
 
 const RENDER = P => {
-	const { text, color } = P;
+	const { text, color, opacity } = P;
 
 	return (
-		<View>
+		<View style={{ opacity }}>
 			<Text style={[styles.caption, { color }]}>{text}</Text>
 			<BottomBorder />
 		</View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 	}
 });
 
-RENDER.propTypes = { color: PropTypes.string };
-RENDER.defaultProps = { color: Colors.black };
+RENDER.propTypes = { color: PropTypes.string, opacity: PropTypes.number };
+RENDER.defaultProps = { color: Colors.black, opacity: 1 };
 
 export default RENDER;
