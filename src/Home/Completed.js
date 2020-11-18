@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, FlatList } from 'react-native';
 import { View } from 'native-base';
 
 import Colors from '../Colors.json';
@@ -9,26 +9,28 @@ import Caption from '../Components/Caption';
 
 import ToDo from './ToDo';
 
-const RENDER = () => {
-	useEffect(() => { return () => null; }, []);
+const RENDER = P => {
+	const { data } = P;
 
 	return (
 		<View style={styles.container}>
-			<Caption text={'COMPLETED'} color={Colors.gray} />
+			<Caption text={'COMPLETED'} color={Colors.gray} opacity={data.length < 1 ? 0.5 : 1} />
 
-			<View>
-				<ToDo todoText={'Nisi proident nisi eiusmod non.'} completed />
-				<ToDo todoText={'Nisi proident nisi eiusmod non.'} completed />
-				<ToDo todoText={'Nisi proident nisi eiusmod non.'} completed />
-				<ToDo todoText={'Nisi proident nisi eiusmod non.'} completed />
-			</View>
+			<FlatList
+				data={data}
+				extraData={data}
+				renderItem={d => <ToDo todoText={d.item.todo} id={d.item.id} />}
+				showsVerticalScrollIndicator={false}
+				showsHorizontalScrollIndicator={false}
+			/>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
 	container: {
-		marginHorizontal: W(3)
+		marginHorizontal: W(3),
+		flex: 1
 	},
 });
 
