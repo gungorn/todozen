@@ -17,11 +17,11 @@ class STRG {
 		//token yoksa ya da getirilemezse
 		const onError = async () => { return await this.setTOKEN(); }
 
-
 		//token getir
 		try { token = await AsyncStorage.getItem('token'); }
 		catch (e) { token = await onError(); console.log(e); }
 
+		//token boş
 		if (!token) token = await onError();
 
 		return token;
