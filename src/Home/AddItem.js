@@ -44,6 +44,8 @@ const RENDER = () => {
 					value={value}
 					onChangeText={d => setValue(d)}
 					disabled={loading}
+					returnKeyType={'done'}
+					blurOnSubmit
 				/>
 
 				<Button hasText transparent onPress={setTODO}>

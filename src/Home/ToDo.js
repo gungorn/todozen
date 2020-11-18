@@ -32,7 +32,13 @@ const RENDER = P => {
 			}
 			{(edit && !completed) ?
 				<>
-					<Textarea style={styles.input} value={todoTextEdit} onChangeText={d => { setTodoTextEdit(d); setTodoText_(d); }} />
+					<Textarea
+						style={styles.input}
+						value={todoTextEdit}
+						onChangeText={d => { setTodoTextEdit(d); setTodoText_(d); }}
+						returnKeyType={'done'}
+						blurOnSubmit
+					/>
 
 					<Button hasText transparent onPress={editOnPress}>
 						<Text uppercase={false} style={styles.saveButtonText}>Save</Text>
